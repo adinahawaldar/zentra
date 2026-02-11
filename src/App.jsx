@@ -8,10 +8,13 @@ import ExpectedImpact from './Components/ExpectedImpact'
 import CommunityEngagement from './Components/CommunityEngagement'
 import AboutInitiative from './Components/AboutInitiative'
 import IssueSubmission from './Components/IssueSubmission'
+import Footer from './Components/Footer'
+import Navbar from './Components/Navbar'
 
 const App = () => {
   return (
     <>
+    <Navbar/>
       <Hero/>
       <IssueSubmission/>
       {/* <ProblemStatement/> */}
@@ -21,6 +24,7 @@ const App = () => {
       <ExpectedImpact/>
       <CommunityEngagement/>
       <AboutInitiative/>
+      <Footer/>
     </>
   )
 }

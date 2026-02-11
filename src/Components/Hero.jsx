@@ -47,7 +47,7 @@ const Hero = () => {
                 href="#framework"
                 className="rounded-md bg-emerald-700 px-6 py-3 text-sm font-medium text-white shadow-sm transition-colors hover:bg-emerald-800 focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:ring-offset-2 md:px-7 md:py-3.5 md:text-base"
               >
-                Explore Framework
+                Report Issue
               </a>
               <a
                 href="#get-involved"
@@ -64,7 +64,7 @@ const Hero = () => {
               </a>
             </div>
 
-            {/* Partner accreditation – institutional trust */}
+            {/* Partner accreditation – institutional trust
             <div className="mt-10 border-t border-slate-200 pt-6 md:mt-14 md:pt-8">
               <p className="text-xs font-medium uppercase tracking-wider text-slate-500">
                 In collaboration with
@@ -80,8 +80,8 @@ const Hero = () => {
                   C40 Cities Climate Leadership
                 </span>
               </div>
-            </div>
-          </div>
+            </div>*/}
+          </div> 
 
           {/* Right column: performance data + city/energy metrics – 5 cols */}
           <div className="lg:col-span-5">
