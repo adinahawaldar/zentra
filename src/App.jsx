@@ -19,9 +19,9 @@ const App = () => {
       <IssueSubmission/>
       {/* <ProblemStatement/> */}
       <Solution/>
-      <Implementation/>
+      {/* <Implementation/> */}
       <TechnologyFramework/>
-      <ExpectedImpact/>
+      {/* <ExpectedImpact/> */}
       <CommunityEngagement/>
       <AboutInitiative/>
       <Footer/>

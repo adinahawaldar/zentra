@@ -23,8 +23,8 @@ const Navbar = () => {
         <div className="flex h-16 items-center justify-between md:h-20">
           {/* Logo / Brand */}
           <div className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-md bg-emerald-100 md:h-9 md:w-9">
-              <svg
+            {/* <div className="flex h-8 w-8 items-center justify-center rounded-md bg-emerald-100 md:h-9 md:w-9"> */}
+              {/* <svg
                 className="h-4 w-4 text-emerald-700 md:h-5 md:w-5"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -36,14 +36,14 @@ const Navbar = () => {
                   strokeLinejoin="round"
                   d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
                 />
-              </svg>
-            </div>
+              </svg> */}
+            {/* </div> */}
             <div>
               <span className="font-serif text-base font-semibold text-gray-900 md:text-lg">
                 Zentra
               </span>
               <span className="ml-2 hidden rounded-full bg-emerald-100 px-2 py-0.5 text-[10px] font-medium text-emerald-800 md:inline-block">
-                Est. 2024
+                Est. 2026
               </span>
             </div>
           </div>

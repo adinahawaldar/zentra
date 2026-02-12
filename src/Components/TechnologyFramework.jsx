@@ -567,7 +567,7 @@ const TechnologyFramework = () => {
         </div>
 
         {/* Compliance & certifications */}
-        <div className="mt-16 rounded-lg border border-slate-200 bg-white p-6 md:mt-20 md:p-8">
+        {/* <div className="mt-16 rounded-lg border border-slate-200 bg-white p-6 md:mt-20 md:p-8">
           <div className="grid gap-6 md:grid-cols-12">
             <div className="md:col-span-3">
               <div className="flex items-center gap-2">
@@ -612,12 +612,12 @@ const TechnologyFramework = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* Attribution */}
-        <div className="mt-12 text-center text-xs text-slate-500">
+        {/* <div className="mt-12 text-center text-xs text-slate-500">
           <p>Technology stack validated by U.S. Department of Energy • Smart Grid Integration Program</p>
-        </div>
+        </div> */}
       </div>
     </section>
   );

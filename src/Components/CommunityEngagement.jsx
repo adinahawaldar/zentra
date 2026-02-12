@@ -1,7 +1,7 @@
 import React from "react";
 
 const CommunityEngagement = () => {
-  // Engagement programs
+  // Engagement programs – workshop removed, all cards compact
   const programs = [
     {
       id: "volunteer",
@@ -9,7 +9,7 @@ const CommunityEngagement = () => {
       description:
         "Hands-on participation in cluster installation, community greening, and circular economy initiatives. No prior experience required—training provided.",
       icon: (
-        <svg className="h-5 w-5 text-emerald-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+        <svg className="h-4 w-4 text-emerald-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
         </svg>
       ),
@@ -23,31 +23,12 @@ const CommunityEngagement = () => {
       },
     },
     {
-      id: "workshops",
-      title: "Local Training Workshops",
-      description:
-        "Certification programs in modular infrastructure operations, smart monitoring, and cooperative governance. Pathway to permanent employment within clusters.",
-      icon: (
-        <svg className="h-5 w-5 text-emerald-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5" />
-        </svg>
-      ),
-      metrics: [
-        { label: "Graduates", value: "2,340" },
-        { label: "Placement rate", value: "86%" },
-      ],
-      action: {
-        label: "Find Workshop",
-        href: "#workshops",
-      },
-    },
-    {
       id: "partner",
       title: "Partner With Us",
       description:
         "Strategic collaboration for municipalities, utilities, developers, and mission-aligned organizations. Joint implementation, research, or investment partnerships.",
       icon: (
-        <svg className="h-5 w-5 text-emerald-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+        <svg className="h-4 w-4 text-emerald-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0z" />
         </svg>
       ),
@@ -67,7 +48,7 @@ const CommunityEngagement = () => {
       description:
         "Be among the first communities to adopt the Green Cluster Model. Priority access to implementation, technical assistance, and impact funding.",
       icon: (
-        <svg className="h-5 w-5 text-emerald-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+        <svg className="h-4 w-4 text-emerald-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
         </svg>
       ),
@@ -172,42 +153,42 @@ const CommunityEngagement = () => {
           </p>
         </div>
 
-        {/* Four program cards - compact grid */}
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+        {/* Three program cards - compact grid, even smaller */}
+        <div className="grid gap-4 md:grid-cols-3">
           {programs.map((program) => (
             <div
               key={program.id}
-              className="group flex h-full flex-col rounded-lg border border-slate-200 bg-white p-5 shadow-sm transition-all hover:border-emerald-300 hover:shadow-md"
+              className="group flex h-full flex-col rounded-lg border border-slate-200 bg-white p-4 shadow-sm transition-all hover:border-emerald-300 hover:shadow-md"
             >
               <div className="flex items-start justify-between">
-                <div className="flex h-8 w-8 items-center justify-center rounded-md bg-emerald-50">
+                <div className="flex h-7 w-7 items-center justify-center rounded-md bg-emerald-50">
                   {program.icon}
                 </div>
                 {program.action.primary && (
-                  <span className="rounded-full bg-emerald-100 px-2 py-0.5 text-[10px] font-semibold text-emerald-800">
+                  <span className="rounded-full bg-emerald-100 px-2 py-0.5 text-[9px] font-semibold text-emerald-800">
                     Featured
                   </span>
                 )}
               </div>
 
-              <h3 className="mt-4 text-base font-semibold text-slate-900">{program.title}</h3>
-              <p className="mt-2 text-xs leading-relaxed text-slate-700">{program.description}</p>
+              <h3 className="mt-3 text-sm font-semibold text-slate-900">{program.title}</h3>
+              <p className="mt-1.5 text-xs leading-relaxed text-slate-700">{program.description}</p>
 
-              {/* Metrics */}
-              <div className="mt-4 flex items-center gap-3 border-t border-slate-100 pt-3">
+              {/* Metrics - smaller */}
+              <div className="mt-3 flex items-center gap-2 border-t border-slate-100 pt-2">
                 {program.metrics.map((metric, idx) => (
                   <div key={idx} className="flex-1">
-                    <p className="text-[10px] text-slate-500">{metric.label}</p>
-                    <p className="font-mono text-sm font-semibold text-slate-900">{metric.value}</p>
+                    <p className="text-[9px] text-slate-500">{metric.label}</p>
+                    <p className="font-mono text-xs font-semibold text-slate-900">{metric.value}</p>
                   </div>
                 ))}
               </div>
 
-              {/* CTA */}
-              <div className="mt-5">
+              {/* CTA - smaller */}
+              <div className="mt-4">
                 <a
                   href={program.action.href}
-                  className={`inline-flex w-full items-center justify-center gap-1.5 rounded-md px-3 py-2 text-xs font-medium transition-all ${
+                  className={`inline-flex w-full items-center justify-center gap-1 rounded-md px-2.5 py-1.5 text-xs font-medium transition-all ${
                     program.action.primary
                       ? "bg-emerald-700 text-white shadow-sm hover:bg-emerald-800"
                       : "border border-slate-300 bg-white text-slate-700 hover:bg-slate-50"
@@ -215,7 +196,7 @@ const CommunityEngagement = () => {
                 >
                   {program.action.label}
                   <svg
-                    className="h-3 w-3"
+                    className="h-2.5 w-2.5"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -286,7 +267,7 @@ const CommunityEngagement = () => {
                   >
                     <div className="col-span-5 flex items-center gap-2 md:col-span-4">
                       <span
-                        className={`rounded-full px-2 py-0.5 text-[10px] font-medium ${getEventTypeColor(
+                        className={`rounded-full px-2 py-0.5 text-[9px] font-medium ${getEventTypeColor(
                           event.type
                         )}`}
                       >
@@ -298,7 +279,7 @@ const CommunityEngagement = () => {
                           ? "Volunteer"
                           : "Pilot"}
                       </span>
-                      <span className="font-medium text-slate-900">{event.title}</span>
+                      <span className="text-xs font-medium text-slate-900">{event.title}</span>
                     </div>
                     <div className="col-span-3 flex items-center gap-1 text-slate-600 md:col-span-3">
                       <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -442,7 +423,7 @@ const CommunityEngagement = () => {
         </div>
 
         {/* Partner logos / affiliation */}
-        <div className="mt-16 border-t border-slate-200 pt-8">
+        {/* <div className="mt-16 border-t border-slate-200 pt-8">
           <p className="text-center text-[10px] font-medium uppercase tracking-wider text-slate-500">
             Community partners
           </p>
@@ -453,12 +434,12 @@ const CommunityEngagement = () => {
             <span className="text-xs font-semibold text-slate-800">Green America</span>
             <span className="text-xs font-semibold text-slate-800">Habitat for Humanity</span>
           </div>
-        </div>
+        </div> */}
 
         {/* Attribution */}
-        <div className="mt-12 text-center text-[10px] text-slate-500">
+        {/* <div className="mt-12 text-center text-[10px] text-slate-500">
           <p>84 active community partners • 2,340 trained residents • 1,240 volunteers</p>
-        </div>
+        </div> */}
       </div>
     </section>
   );

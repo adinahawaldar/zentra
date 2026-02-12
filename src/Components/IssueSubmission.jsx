@@ -156,7 +156,7 @@ const IssueSubmission = () => {
             <span className="block font-semibold text-emerald-900">We act on it.</span>
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-sm text-slate-700 md:text-base">
-            Transparency is not optional. Every issue—technical, operational, or community—is logged,
+            Transparency is not optional. Every issue technical, operational, or community is logged,
             tracked, and resolved with clear accountability. No black boxes. No bureaucracy.
           </p>
         </div>
