@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-const IssueSubmission = () => {
-  // Mock data for active issues
+const CivicIssuePlatform = () => {
+  // Mock data for active issues – structured like a real 311-style system
   const [activeIssues] = useState([
     {
       id: "ZTR-4012",
@@ -14,6 +14,8 @@ const IssueSubmission = () => {
       date: "2026-02-08",
       assignedTo: "TechOps",
       updates: 4,
+      source: "web",
+      verified: true,
     },
     {
       id: "ZTR-3987",
@@ -26,6 +28,8 @@ const IssueSubmission = () => {
       date: "2026-02-09",
       assignedTo: "Community Engagement",
       updates: 2,
+      source: "mobile",
+      verified: false,
     },
     {
       id: "ZTR-3952",
@@ -38,6 +42,8 @@ const IssueSubmission = () => {
       date: "2026-02-07",
       assignedTo: "Circular Ops",
       updates: 6,
+      source: "web",
+      verified: true,
     },
     {
       id: "ZTR-3921",
@@ -51,6 +57,8 @@ const IssueSubmission = () => {
       assignedTo: "Maintenance",
       resolvedDate: "2026-02-10",
       updates: 8,
+      source: "api",
+      verified: true,
     },
     {
       id: "ZTR-3894",
@@ -63,6 +71,8 @@ const IssueSubmission = () => {
       date: "2026-02-10",
       assignedTo: "Unassigned",
       updates: 1,
+      source: "web",
+      verified: false,
     },
     {
       id: "ZTR-3876",
@@ -75,22 +85,25 @@ const IssueSubmission = () => {
       date: "2026-02-06",
       assignedTo: "Energy Systems",
       updates: 5,
+      source: "mobile",
+      verified: true,
     },
   ]);
 
-  // Categories for issue reporting
+  // Categories for issue reporting – civic taxonomy
   const categories = [
     "Infrastructure",
-    "Energy",
-    "Water",
-    "Waste",
-    "Community",
-    "Training",
-    "Partnership",
+    "Energy Systems",
+    "Water & Sanitation",
+    "Waste & Circularity",
+    "Community Facilities",
+    "Public Safety",
+    "Training & Employment",
+    "Partnership & Governance",
     "Other",
   ];
 
-  // Clusters for selection
+  // Clusters / Wards – like municipal divisions
   const clusters = [
     "Oakwood",
     "Riverside",
@@ -99,107 +112,205 @@ const IssueSubmission = () => {
     "Eastside",
     "Westend",
     "Downtown",
+    "Industrial Corridor",
     "Other",
   ];
 
-  // Priority levels
+  // Priority levels – aligned with civic SLA tiers
   const priorities = [
-    { value: "low", label: "Low", color: "bg-blue-100 text-blue-800" },
-    { value: "medium", label: "Medium", color: "bg-amber-100 text-amber-800" },
-    { value: "high", label: "High", color: "bg-red-100 text-red-800" },
-    { value: "critical", label: "Critical", color: "bg-red-600 text-white" },
+    { value: "low", label: "Low", color: "bg-blue-100 text-blue-800", sla: "7 days" },
+    { value: "medium", label: "Medium", color: "bg-amber-100 text-amber-800", sla: "3 days" },
+    { value: "high", label: "High", color: "bg-red-100 text-red-800", sla: "24 hours" },
+    { value: "critical", label: "Critical", color: "bg-red-600 text-white", sla: "4 hours" },
   ];
 
-  // Status badges
+  // Status badges – public-facing language
   const getStatusBadge = (status) => {
     switch (status) {
       case "pending":
-        return <span className="rounded-full bg-amber-100 px-2.5 py-1 text-[10px] font-medium text-amber-800">Pending</span>;
+        return <span className="rounded-full bg-amber-50 px-2.5 py-1 text-[10px] font-medium text-amber-700 ring-1 ring-amber-200">Pending review</span>;
       case "in-progress":
-        return <span className="rounded-full bg-blue-100 px-2.5 py-1 text-[10px] font-medium text-blue-800">In Progress</span>;
+        return <span className="rounded-full bg-blue-50 px-2.5 py-1 text-[10px] font-medium text-blue-700 ring-1 ring-blue-200">In progress</span>;
       case "resolved":
-        return <span className="rounded-full bg-emerald-100 px-2.5 py-1 text-[10px] font-medium text-emerald-800">Resolved</span>;
+        return <span className="rounded-full bg-emerald-50 px-2.5 py-1 text-[10px] font-medium text-emerald-700 ring-1 ring-emerald-200">Resolved</span>;
       case "closed":
-        return <span className="rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-medium text-slate-800">Closed</span>;
+        return <span className="rounded-full bg-slate-50 px-2.5 py-1 text-[10px] font-medium text-slate-600 ring-1 ring-slate-200">Closed</span>;
       default:
-        return <span className="rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-medium text-slate-800">{status}</span>;
+        return <span className="rounded-full bg-slate-50 px-2.5 py-1 text-[10px] font-medium text-slate-600 ring-1 ring-slate-200">{status}</span>;
     }
   };
 
   const getPriorityBadge = (priority) => {
     switch (priority) {
       case "high":
-        return <span className="rounded-full bg-red-100 px-2.5 py-1 text-[10px] font-medium text-red-800">High</span>;
+        return <span className="rounded-full bg-red-50 px-2.5 py-1 text-[10px] font-medium text-red-700 ring-1 ring-red-200">High</span>;
       case "medium":
-        return <span className="rounded-full bg-amber-100 px-2.5 py-1 text-[10px] font-medium text-amber-800">Medium</span>;
+        return <span className="rounded-full bg-amber-50 px-2.5 py-1 text-[10px] font-medium text-amber-700 ring-1 ring-amber-200">Medium</span>;
       case "low":
-        return <span className="rounded-full bg-blue-100 px-2.5 py-1 text-[10px] font-medium text-blue-800">Low</span>;
+        return <span className="rounded-full bg-blue-50 px-2.5 py-1 text-[10px] font-medium text-blue-700 ring-1 ring-blue-200">Low</span>;
       case "critical":
-        return <span className="rounded-full bg-red-600 px-2.5 py-1 text-[10px] font-medium text-white">Critical</span>;
+        return <span className="rounded-full bg-red-600 px-2.5 py-1 text-[10px] font-medium text-white ring-1 ring-red-600">Critical</span>;
       default:
-        return <span className="rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-medium text-slate-800">{priority}</span>;
+        return <span className="rounded-full bg-slate-50 px-2.5 py-1 text-[10px] font-medium text-slate-600 ring-1 ring-slate-200">{priority}</span>;
     }
   };
 
+  // Civic stats – like a public dashboard
+  const civicStats = [
+    {
+      label: "Open issues",
+      value: activeIssues.filter((i) => i.status !== "resolved" && i.status !== "closed").length,
+      trend: "-2%",
+      trendLabel: "vs last week",
+      priority: "3 high priority",
+      color: "amber",
+    },
+    {
+      label: "Resolved (30d)",
+      value: "47",
+      trend: "+12%",
+      trendLabel: "vs last month",
+      metric: "Avg resolution: 3.2 days",
+      color: "emerald",
+    },
+    {
+      label: "Active reporters",
+      value: "86",
+      subtext: "Last 30 days",
+      color: "slate",
+    },
+    {
+      label: "SLA compliance",
+      value: "94%",
+      subtext: "Within target timeframe",
+      color: "slate",
+    },
+  ];
+
   return (
-    <section className="bg-white px-4 py-16 md:py-20 lg:py-24">
+    <section className="bg-slate-50 px-4 py-16 md:py-20 lg:py-24">
       <div className="mx-auto max-w-7xl">
-        {/* Section header */}
-        <div className="mb-12 text-center md:mb-16">
-          <div className="mb-3 flex items-center justify-center gap-2 text-[10px] font-medium uppercase tracking-[0.15em] text-emerald-700/70 md:text-xs">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-600/40" />
-            <span>Issue Reporting & Resolution</span>
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-600/40" />
+        {/* === CIVIC IDENTITY HEADER === */}
+        <div className="mb-10 flex flex-col items-start justify-between gap-4 border-b border-slate-200 pb-6 md:flex-row md:items-center">
+          <div>
+            <div className="mb-2 flex items-center gap-2.5">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-800">
+                <svg
+                  className="h-5 w-5 text-white"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={1.8}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"
+                  />
+                </svg>
+              </div>
+              <h1 className="font-serif text-xl font-medium text-slate-900 md:text-2xl">
+                Zentra Civic Resolution System
+              </h1>
+            </div>
+            <p className="text-xs text-slate-600 md:text-sm">
+              Public issue reporting • Real-time tracking • Transparent resolution
+            </p>
           </div>
-          <h2 className="font-serif text-2xl font-light text-slate-900 md:text-3xl lg:text-4xl">
-            See something. Report something.
-            <span className="block font-semibold text-emerald-900">We act on it.</span>
-          </h2>
-          <p className="mx-auto mt-3 max-w-2xl text-sm text-slate-700 md:text-base">
-            Transparency is not optional. Every issue technical, operational, or community is logged,
-            tracked, and resolved with clear accountability. No black boxes. No bureaucracy.
-          </p>
+          <div className="flex items-center gap-3 rounded-lg bg-white px-4 py-2.5 shadow-sm">
+            <div className="flex h-2 w-2">
+              <span className="absolute inline-flex h-2 w-2 animate-ping rounded-full bg-emerald-500 opacity-75"></span>
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-600"></span>
+            </div>
+            <span className="text-xs font-medium text-slate-800">System status: Operational</span>
+            <span className="h-4 w-px bg-slate-200"></span>
+            <span className="text-xs text-slate-600">Last sync: 2 min ago</span>
+          </div>
         </div>
 
-        {/* Main grid: Submission form + Stats */}
+        {/* === CIVIC DASHBOARD HEADER === */}
+        <div className="mb-8 grid grid-cols-2 gap-4 lg:grid-cols-4">
+          {civicStats.map((stat, idx) => (
+            <div key={idx} className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-medium uppercase tracking-wider text-slate-500">
+                  {stat.label}
+                </span>
+                {stat.trend && (
+                  <span
+                    className={`rounded-full px-2 py-0.5 text-[9px] font-medium ${
+                      stat.color === "emerald"
+                        ? "bg-emerald-50 text-emerald-700"
+                        : "bg-amber-50 text-amber-700"
+                    }`}
+                  >
+                    {stat.trend}
+                  </span>
+                )}
+              </div>
+              <p className="mt-1 font-mono text-2xl font-bold text-slate-900">{stat.value}</p>
+              {stat.priority && (
+                <div className="mt-2 flex items-center gap-2 text-[10px]">
+                  <span className="h-1.5 w-1.5 rounded-full bg-red-500"></span>
+                  <span className="text-slate-600">{stat.priority}</span>
+                </div>
+              )}
+              {stat.metric && (
+                <p className="mt-2 text-[10px] text-slate-600">{stat.metric}</p>
+              )}
+              {stat.subtext && (
+                <p className="mt-2 text-[10px] text-slate-600">{stat.subtext}</p>
+              )}
+            </div>
+          ))}
+        </div>
+
+        {/* === MAIN GRID: REPORTING + QUEUE === */}
         <div className="grid gap-6 lg:grid-cols-12">
-          {/* Issue submission form - 7 cols */}
+          {/* LEFT: PUBLIC REPORTING FORM – 7 cols */}
           <div className="lg:col-span-7">
             <div className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
               <div className="flex items-center justify-between border-b border-slate-200 pb-4">
-                <div className="flex items-center gap-2">
-                  <svg
-                    className="h-5 w-5 text-emerald-700"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={1.8}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"
-                    />
-                  </svg>
-                  <h3 className="text-sm font-bold uppercase tracking-wider text-slate-700">
-                    Submit a New Issue
-                  </h3>
+                <div className="flex items-center gap-2.5">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-100">
+                    <svg
+                      className="h-4 w-4 text-emerald-800"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={1.8}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m3.75 9v6m3-3H9m1.5-12H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-bold text-slate-900">Report an issue</h3>
+                    <p className="text-[10px] text-slate-600">Public submission • Tracking ID provided</p>
+                  </div>
                 </div>
-                <span className="rounded-full bg-emerald-100 px-3 py-1 text-[10px] font-semibold text-emerald-800">
-                  Average response: 4.2h
-                </span>
+                <div className="flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1.5">
+                  <span className="relative flex h-2 w-2">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-75"></span>
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-600"></span>
+                  </span>
+                  <span className="text-[9px] font-medium text-emerald-800">Avg response: 4.2h</span>
+                </div>
               </div>
 
               <div className="mt-5">
                 <form className="space-y-5">
-                  {/* Row 1: Cluster + Category */}
+                  {/* Row 1: Location + Category – civic format */}
                   <div className="grid gap-4 md:grid-cols-2">
                     <div>
                       <label className="block text-xs font-medium text-slate-700">
-                        Cluster <span className="text-red-500">*</span>
+                        Cluster / Ward <span className="text-red-500">*</span>
                       </label>
-                      <select className="mt-1.5 w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-xs text-slate-900 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500">
-                        <option value="">Select cluster</option>
+                      <select className="mt-1.5 w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-xs text-slate-900 focus:border-emerald-600 focus:outline-none focus:ring-1 focus:ring-emerald-600">
+                        <option value="">Select location</option>
                         {clusters.map((cluster) => (
                           <option key={cluster} value={cluster}>
                             {cluster}
@@ -211,7 +322,7 @@ const IssueSubmission = () => {
                       <label className="block text-xs font-medium text-slate-700">
                         Category <span className="text-red-500">*</span>
                       </label>
-                      <select className="mt-1.5 w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-xs text-slate-900 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500">
+                      <select className="mt-1.5 w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-xs text-slate-900 focus:border-emerald-600 focus:outline-none focus:ring-1 focus:ring-emerald-600">
                         <option value="">Select category</option>
                         {categories.map((category) => (
                           <option key={category} value={category}>
@@ -222,29 +333,29 @@ const IssueSubmission = () => {
                     </div>
                   </div>
 
-                  {/* Row 2: Priority + Reported By */}
+                  {/* Row 2: Priority + Contact – SLA visible */}
                   <div className="grid gap-4 md:grid-cols-2">
                     <div>
                       <label className="block text-xs font-medium text-slate-700">
                         Priority <span className="text-red-500">*</span>
                       </label>
-                      <select className="mt-1.5 w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-xs text-slate-900 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500">
-                        <option value="">Select priority</option>
+                      <select className="mt-1.5 w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-xs text-slate-900 focus:border-emerald-600 focus:outline-none focus:ring-1 focus:ring-emerald-600">
+                        <option value="">Select priority (SLA)</option>
                         {priorities.map((p) => (
                           <option key={p.value} value={p.value}>
-                            {p.label}
+                            {p.label} – Response: {p.sla}
                           </option>
                         ))}
                       </select>
                     </div>
                     <div>
                       <label className="block text-xs font-medium text-slate-700">
-                        Your Name <span className="text-red-500">*</span>
+                        Your name (or "Anonymous")
                       </label>
                       <input
                         type="text"
-                        placeholder="Full name"
-                        className="mt-1.5 w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-xs text-slate-900 placeholder:text-slate-400 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                        placeholder="Full name or leave blank"
+                        className="mt-1.5 w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-xs text-slate-900 placeholder:text-slate-400 focus:border-emerald-600 focus:outline-none focus:ring-1 focus:ring-emerald-600"
                       />
                     </div>
                   </div>
@@ -252,33 +363,33 @@ const IssueSubmission = () => {
                   {/* Row 3: Issue Title */}
                   <div>
                     <label className="block text-xs font-medium text-slate-700">
-                      Issue Title <span className="text-red-500">*</span>
+                      Brief description <span className="text-red-500">*</span>
                     </label>
                     <input
                       type="text"
-                      placeholder="Brief, descriptive summary"
-                      className="mt-1.5 w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-xs text-slate-900 placeholder:text-slate-400 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                      placeholder="e.g., Broken water pump, illegal dumping, streetlight outage"
+                      className="mt-1.5 w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-xs text-slate-900 placeholder:text-slate-400 focus:border-emerald-600 focus:outline-none focus:ring-1 focus:ring-emerald-600"
                     />
                   </div>
 
-                  {/* Row 4: Detailed Description */}
+                  {/* Row 4: Full Details */}
                   <div>
                     <label className="block text-xs font-medium text-slate-700">
-                      Detailed Description <span className="text-red-500">*</span>
+                      Full description <span className="text-red-500">*</span>
                     </label>
                     <textarea
                       rows={4}
-                      placeholder="What did you observe? When? Where? Any relevant context or suggested resolution?"
-                      className="mt-1.5 w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-xs text-slate-900 placeholder:text-slate-400 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                      placeholder="When did you notice this? Where exactly? Is there immediate risk? Any additional context helps our team respond faster."
+                      className="mt-1.5 w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-xs text-slate-900 placeholder:text-slate-400 focus:border-emerald-600 focus:outline-none focus:ring-1 focus:ring-emerald-600"
                     />
                   </div>
 
-                  {/* Row 5: Attachments + Anonymous toggle */}
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-4">
+                  {/* Row 5: Evidence + Anon toggle */}
+                  <div className="flex flex-wrap items-center justify-between gap-3">
+                    <div className="flex items-center gap-3">
                       <button
                         type="button"
-                        className="flex items-center gap-1.5 rounded-md border border-slate-300 bg-white px-3 py-2 text-xs font-medium text-slate-700 hover:bg-slate-50"
+                        className="inline-flex items-center gap-1.5 rounded-md border border-slate-300 bg-white px-3 py-2 text-xs font-medium text-slate-700 shadow-sm hover:bg-slate-50"
                       >
                         <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path
@@ -287,349 +398,73 @@ const IssueSubmission = () => {
                             d="M18.375 12.739l-7.693 7.693a4.5 4.5 0 01-6.364-6.364l10.94-10.94A3 3 0 1119.5 7.372L8.552 18.32m.009-.01l-.01.01m5.699-9.941l-7.81 7.81a1.5 1.5 0 002.112 2.13"
                           />
                         </svg>
-                        Attach files
+                        Upload photo / document
                       </button>
-                      <span className="text-[10px] text-slate-500">Max 10MB • Images, PDFs, logs</span>
+                      <span className="text-[9px] text-slate-500">Max 10MB • JPG, PNG, PDF</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <input
                         type="checkbox"
-                        id="anonymous"
+                        id="civic-anon"
                         className="h-3.5 w-3.5 rounded border-slate-300 text-emerald-700 focus:ring-emerald-500"
                       />
-                      <label htmlFor="anonymous" className="text-xs text-slate-700">
+                      <label htmlFor="civic-anon" className="text-xs text-slate-700">
                         Submit anonymously
                       </label>
                     </div>
                   </div>
 
-                  {/* Submit button */}
-                  <div className="flex items-center justify-end gap-3 border-t border-slate-200 pt-5">
-                    <button
-                      type="button"
-                      className="rounded-md border border-slate-300 bg-white px-5 py-2 text-xs font-medium text-slate-700 hover:bg-slate-50"
-                    >
-                      Cancel
-                    </button>
+                  {/* Submit + Tracking guarantee */}
+                  <div className="flex items-center justify-between border-t border-slate-200 pt-5">
+                    <div className="flex items-center gap-2 text-[9px] text-slate-600">
+                      <svg className="h-3.5 w-3.5 text-emerald-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z"
+                        />
+                      </svg>
+                      <span>You will receive a tracking ID immediately</span>
+                    </div>
                     <button
                       type="submit"
-                      className="rounded-md bg-emerald-700 px-5 py-2 text-xs font-medium text-white shadow-sm hover:bg-emerald-800 focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:ring-offset-2"
+                      className="rounded-md bg-emerald-800 px-6 py-2.5 text-xs font-medium text-white shadow-sm hover:bg-emerald-900 focus:outline-none focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2"
                     >
-                      Submit Issue
+                      Submit report
                     </button>
                   </div>
                 </form>
               </div>
 
-              {/* Trust indicator */}
-              <div className="mt-5 flex items-center gap-3 rounded-md bg-emerald-50/80 p-3 text-[10px]">
-                <svg className="h-4 w-4 flex-shrink-0 text-emerald-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z"
-                  />
-                </svg>
-                <span className="text-slate-800">
-                  <span className="font-medium">Verified reporter protocol:</span> All submissions receive a tracking ID and status updates. Retaliation is strictly prohibited.
-                </span>
-              </div>
-            </div>
-          </div>
-
-          {/* Stats & Quick actions - 5 cols */}
-          <div className="lg:col-span-5">
-            <div className="grid h-full grid-cols-1 gap-6">
-              {/* Metrics cards */}
-              <div className="grid grid-cols-2 gap-4">
-                <div className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs text-slate-600">Open issues</span>
-                    <span className="rounded-full bg-amber-100 px-2 py-0.5 text-[10px] font-medium text-amber-800">
-                      -2% vs last week
-                    </span>
-                  </div>
-                  <p className="mt-2 font-mono text-2xl font-bold text-slate-900">
-                    {activeIssues.filter((i) => i.status !== "resolved" && i.status !== "closed").length}
-                  </p>
-                  <div className="mt-3 flex items-center gap-2 text-[10px]">
-                    <span className="h-1.5 w-1.5 rounded-full bg-red-500" />
-                    <span className="text-slate-600">3 high priority</span>
-                  </div>
-                </div>
-                <div className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs text-slate-600">Resolved (30d)</span>
-                    <span className="rounded-full bg-emerald-100 px-2 py-0.5 text-[10px] font-medium text-emerald-800">
-                      +12% vs last month
-                    </span>
-                  </div>
-                  <p className="mt-2 font-mono text-2xl font-bold text-slate-900">47</p>
-                  <div className="mt-3 flex items-center gap-2 text-[10px]">
-                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                    <span className="text-slate-600">Avg resolution: 3.2 days</span>
-                  </div>
-                </div>
-                <div className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
-                  <div className="flex items-center gap-1.5">
-                    <svg className="h-3.5 w-3.5 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"
-                      />
-                    </svg>
-                    <span className="text-xs font-medium text-slate-800">Reporters</span>
-                  </div>
-                  <p className="mt-1 font-mono text-xl font-bold text-slate-900">86</p>
-                  <p className="text-[10px] text-slate-600">Last 30 days</p>
-                </div>
-                <div className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
-                  <div className="flex items-center gap-1.5">
-                    <svg className="h-3.5 w-3.5 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437l1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008z"
-                      />
-                    </svg>
-                    <span className="text-xs font-medium text-slate-800">Resolution SLA</span>
-                  </div>
-                  <p className="mt-1 font-mono text-xl font-bold text-slate-900">94%</p>
-                  <p className="text-[10px] text-slate-600">Within target timeframe</p>
-                </div>
-              </div>
-
-              {/* Quick actions */}
-              <div className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-slate-700">Quick Actions</h4>
-                <div className="mt-4 grid grid-cols-2 gap-3">
-                  <button className="flex items-center gap-2 rounded-md border border-slate-200 bg-white px-3 py-2.5 text-xs font-medium text-slate-800 transition-all hover:border-emerald-300 hover:bg-emerald-50/50">
-                    <svg className="h-4 w-4 text-emerald-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"
-                      />
-                    </svg>
-                    My reports
-                  </button>
-                  <button className="flex items-center gap-2 rounded-md border border-slate-200 bg-white px-3 py-2.5 text-xs font-medium text-slate-800 transition-all hover:border-emerald-300 hover:bg-emerald-50/50">
-                    <svg className="h-4 w-4 text-emerald-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"
-                      />
-                    </svg>
-                    Track issue
-                  </button>
-                  <button className="flex items-center gap-2 rounded-md border border-slate-200 bg-white px-3 py-2.5 text-xs font-medium text-slate-800 transition-all hover:border-emerald-300 hover:bg-emerald-50/50">
-                    <svg className="h-4 w-4 text-emerald-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 00-3.7-3.7 48.678 48.678 0 00-7.324 0 4.006 4.006 0 00-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3l-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 003.7 3.7 48.656 48.656 0 007.324 0 4.006 4.006 0 003.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3l-3 3"
-                      />
-                    </svg>
-                    Escalate
-                  </button>
-                  <button className="flex items-center gap-2 rounded-md border border-slate-200 bg-white px-3 py-2.5 text-xs font-medium text-slate-800 transition-all hover:border-emerald-300 hover:bg-emerald-50/50">
-                    <svg className="h-4 w-4 text-emerald-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"
-                      />
-                    </svg>
-                    Refresh
-                  </button>
-                </div>
-              </div>
-
-              {/* Report anon CTA */}
-              <div className="rounded-lg bg-emerald-50/80 p-4">
-                <div className="flex items-start gap-3">
-                  <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-emerald-200/70">
-                    <svg className="h-4 w-4 text-emerald-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M16.5 12a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zm0 0c0 1.657 1.007 3 2.25 3S21 13.657 21 12a9 9 0 10-2.636 6.364M16.5 12V8.25"
-                      />
-                    </svg>
-                  </div>
+              {/* Civic trust badge */}
+              <div className="mt-5 rounded-md bg-emerald-50/80 p-3">
+                <div className="flex items-start gap-2.5">
+                  <svg className="h-5 w-5 flex-shrink-0 text-emerald-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"
+                    />
+                  </svg>
                   <div>
-                    <h5 className="text-xs font-bold text-slate-900">Report anonymously</h5>
-                    <p className="mt-1 text-[10px] text-slate-700">
-                      No name required. No email required. Your identity is never recorded.
+                    <p className="text-xs font-medium text-slate-900">Protected disclosure</p>
+                    <p className="text-[9px] text-slate-700">
+                      Retaliation against reporters is strictly prohibited. All submissions are logged and tamper‑evident.
                     </p>
-                    <button className="mt-2 rounded-md bg-white px-3 py-1.5 text-[10px] font-medium text-emerald-800 shadow-sm hover:bg-emerald-50">
-                      Anonymous reporting portal →
-                    </button>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
-        {/* Active issues table - detailed view */}
-        <div className="mt-12">
-          <div className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
-            <div className="flex items-center justify-between border-b border-slate-200 pb-4">
-              <div className="flex items-center gap-2">
-                <svg
-                  className="h-5 w-5 text-emerald-700"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={1.8}
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z"
-                  />
-                </svg>
-                <h3 className="text-sm font-bold uppercase tracking-wider text-slate-700">
-                  Active Issues & Updates
-                </h3>
-              </div>
-              <div className="flex items-center gap-3">
-                <span className="text-[10px] text-slate-500">Last updated: 2026-02-11 14:22</span>
-                <select className="rounded-md border border-slate-300 bg-white px-2 py-1.5 text-[10px] text-slate-700 focus:border-emerald-500 focus:outline-none">
-                  <option>All clusters</option>
-                  {clusters.slice(0, 6).map((c) => (
-                    <option key={c}>{c}</option>
-                  ))}
-                </select>
-              </div>
-            </div>
-
-            {/* Table header */}
-            <div className="mt-4 grid grid-cols-12 gap-2 px-2 text-[10px] font-medium uppercase tracking-wider text-slate-500">
-              <div className="col-span-1">ID</div>
-              <div className="col-span-1">Cluster</div>
-              <div className="col-span-2">Category</div>
-              <div className="col-span-3">Issue</div>
-              <div className="col-span-1">Priority</div>
-              <div className="col-span-1">Status</div>
-              <div className="col-span-1">Reported</div>
-              <div className="col-span-1">Assigned</div>
-              <div className="col-span-1">Updates</div>
-            </div>
-
-            {/* Table rows */}
-            <div className="mt-2 space-y-1">
-              {activeIssues.map((issue) => (
-                <div
-                  key={issue.id}
-                  className="grid grid-cols-12 items-center gap-2 rounded-md px-2 py-2.5 text-xs transition-all hover:bg-slate-50"
-                >
-                  <div className="col-span-1 font-mono text-[10px] font-medium text-slate-700">
-                    {issue.id}
-                  </div>
-                  <div className="col-span-1 text-xs font-medium text-slate-900">{issue.cluster}</div>
-                  <div className="col-span-2 text-[10px] text-slate-700">{issue.category}</div>
-                  <div className="col-span-3 text-xs text-slate-800">{issue.title}</div>
-                  <div className="col-span-1">{getPriorityBadge(issue.priority)}</div>
-                  <div className="col-span-1">{getStatusBadge(issue.status)}</div>
-                  <div className="col-span-1 text-[10px] text-slate-600">
-                    {new Date(issue.date).toLocaleDateString("en-US", { month: "short", day: "numeric" })}
-                  </div>
-                  <div className="col-span-1 text-[10px] text-slate-600">{issue.assignedTo}</div>
-                  <div className="col-span-1">
-                    <span className="rounded-full bg-slate-100 px-2 py-0.5 text-[10px] font-medium text-slate-700">
-                      {issue.updates}
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Pagination / View all */}
-            <div className="mt-5 flex items-center justify-between border-t border-slate-200 pt-4">
-              <span className="text-[10px] text-slate-600">
-                Showing 6 of 24 active issues
-              </span>
-              <button className="flex items-center gap-1 text-[10px] font-medium text-emerald-700 hover:text-emerald-800">
-                View all issues
-                <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* Issue lifecycle & transparency commitment */}
-        <div className="mt-10 grid gap-6 lg:grid-cols-12">
-          <div className="lg:col-span-7">
-            <div className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
-              <div className="flex items-center gap-2">
-                <svg
-                  className="h-4 w-4 text-emerald-700"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={1.8}
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z"
-                  />
-                </svg>
-                <h4 className="text-xs font-bold uppercase tracking-wider text-slate-700">
-                  Issue Resolution Protocol
-                </h4>
-              </div>
-              <div className="mt-4 grid grid-cols-5 gap-1 text-center text-[10px]">
-                <div className="flex flex-col items-center">
-                  <div className="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-100">
-                    <span className="text-xs font-bold text-emerald-800">1</span>
-                  </div>
-                  <span className="mt-2 font-medium text-slate-800">Reported</span>
-                  <span className="text-slate-500">Acknowledged within 2h</span>
-                </div>
-                <div className="flex flex-col items-center">
-                  <div className="flex h-6 w-6 items-center justify-center rounded-full bg-amber-100">
-                    <span className="text-xs font-bold text-amber-800">2</span>
-                  </div>
-                  <span className="mt-2 font-medium text-slate-800">Triage</span>
-                  <span className="text-slate-500">Priority assigned</span>
-                </div>
-                <div className="flex flex-col items-center">
-                  <div className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-100">
-                    <span className="text-xs font-bold text-blue-800">3</span>
-                  </div>
-                  <span className="mt-2 font-medium text-slate-800">Assigned</span>
-                  <span className="text-slate-500">Owner identified</span>
-                </div>
-                <div className="flex flex-col items-center">
-                  <div className="flex h-6 w-6 items-center justify-center rounded-full bg-purple-100">
-                    <span className="text-xs font-bold text-purple-800">4</span>
-                  </div>
-                  <span className="mt-2 font-medium text-slate-800">Resolution</span>
-                  <span className="text-slate-500">Action taken</span>
-                </div>
-                <div className="flex flex-col items-center">
-                  <div className="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-100">
-                    <span className="text-xs font-bold text-emerald-800">5</span>
-                  </div>
-                  <span className="mt-2 font-medium text-slate-800">Closed</span>
-                  <span className="text-slate-500">Verified & documented</span>
-                </div>
-              </div>
-            </div>
-          </div>
+          {/* RIGHT: PUBLIC ISSUE QUEUE – 5 cols */}
           <div className="lg:col-span-5">
-            <div className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
-              <div className="flex items-start gap-3">
-                <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-emerald-100">
+            <div className="flex h-full flex-col gap-5">
+              {/* Quick actions – civic tools */}
+              <div className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+                <div className="flex items-center gap-2.5 border-b border-slate-100 pb-3">
                   <svg
-                    className="h-4 w-4 text-emerald-700"
+                    className="h-5 w-5 text-emerald-700"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -638,32 +473,246 @@ const IssueSubmission = () => {
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                      d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z"
                     />
                   </svg>
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-slate-700">
+                    Public services
+                  </h4>
                 </div>
-                <div>
-                  <h4 className="text-xs font-bold text-slate-900">Public Transparency Board</h4>
-                  <p className="mt-1 text-[10px] text-slate-700">
-                    All issues and resolutions are published quarterly in machine‑readable format.
-                    Community members may request full audit logs.
-                  </p>
-                  <button className="mt-2 text-[10px] font-medium text-emerald-700 hover:text-emerald-800">
-                    View public dashboard →
+                <div className="mt-4 grid grid-cols-2 gap-2">
+                  <button className="flex items-center gap-2 rounded-md border border-slate-200 bg-white px-3 py-2.5 text-xs font-medium text-slate-800 transition-all hover:border-emerald-400 hover:bg-emerald-50/50">
+                    <svg className="h-4 w-4 text-emerald-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"
+                      />
+                    </svg>
+                    Track my report
                   </button>
+                  <button className="flex items-center gap-2 rounded-md border border-slate-200 bg-white px-3 py-2.5 text-xs font-medium text-slate-800 transition-all hover:border-emerald-400 hover:bg-emerald-50/50">
+                    <svg className="h-4 w-4 text-emerald-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
+                    Public dashboard
+                  </button>
+                  <button className="flex items-center gap-2 rounded-md border border-slate-200 bg-white px-3 py-2.5 text-xs font-medium text-slate-800 transition-all hover:border-emerald-400 hover:bg-emerald-50/50">
+                    <svg className="h-4 w-4 text-emerald-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 00-3.7-3.7 48.678 48.678 0 00-7.324 0 4.006 4.006 0 00-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3l-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 003.7 3.7 48.656 48.656 0 007.324 0 4.006 4.006 0 003.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3l-3 3"
+                      />
+                    </svg>
+                    Request update
+                  </button>
+                  <button className="flex items-center gap-2 rounded-md border border-slate-200 bg-white px-3 py-2.5 text-xs font-medium text-slate-800 transition-all hover:border-emerald-400 hover:bg-emerald-50/50">
+                    <svg className="h-4 w-4 text-emerald-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"
+                      />
+                    </svg>
+                    Data export
+                  </button>
+                </div>
+              </div>
+
+              {/* Recent public issues – live feed */}
+              <div className="flex-1 rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+                <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+                  <div className="flex items-center gap-2">
+                    <svg
+                      className="h-5 w-5 text-emerald-700"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={1.8}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M2.25 12.76V12a9.75 9.75 0 1119.5 0v.76m-19.5 0a20.972 20.972 0 002.568 5.25m-2.568-5.25h2.25m16.5 0a20.972 20.972 0 01-2.568 5.25m2.568-5.25h-2.25M12 21a2.25 2.25 0 002.25-2.25v-.675c0-.484-.204-.942-.553-1.258m-3.394 0a1.752 1.752 0 00-.553 1.258v.675A2.25 2.25 0 0012 21z"
+                      />
+                    </svg>
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-slate-700">
+                      Recent public reports
+                    </h4>
+                  </div>
+                  <span className="text-[9px] text-slate-500">Live</span>
+                </div>
+
+                <div className="mt-3 max-h-[320px] space-y-2 overflow-y-auto">
+                  {activeIssues.map((issue) => (
+                    <div
+                      key={issue.id}
+                      className="flex items-start justify-between rounded-md border border-slate-100 bg-white p-3 transition-all hover:bg-slate-50/80"
+                    >
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2">
+                          <span className="font-mono text-[9px] font-medium text-slate-500">
+                            {issue.id}
+                          </span>
+                          <span className="h-3 w-px bg-slate-200"></span>
+                          <span className="text-[9px] font-medium text-slate-700">
+                            {issue.cluster}
+                          </span>
+                          {issue.verified && (
+                            <span className="rounded-full bg-emerald-50 px-1.5 py-0.5 text-[8px] font-medium text-emerald-700 ring-1 ring-emerald-200">
+                              Verified
+                            </span>
+                          )}
+                        </div>
+                        <p className="mt-1 text-xs font-medium text-slate-900">{issue.title}</p>
+                        <div className="mt-1.5 flex items-center gap-2">
+                          {getPriorityBadge(issue.priority)}
+                          {getStatusBadge(issue.status)}
+                          <span className="text-[8px] text-slate-500">
+                            {new Date(issue.date).toLocaleDateString("en-US", {
+                              month: "short",
+                              day: "numeric",
+                            })}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="flex flex-col items-end">
+                        <span className="rounded-full bg-slate-100 px-2 py-0.5 text-[8px] font-medium text-slate-700">
+                          {issue.updates} updates
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-4 flex items-center justify-between border-t border-slate-100 pt-3">
+                  <span className="text-[9px] text-slate-600">
+                    Showing 6 of 24 active reports
+                  </span>
+                  <button className="flex items-center gap-1 text-[9px] font-medium text-emerald-700 hover:text-emerald-800">
+                    View all
+                    <svg className="h-2.5 w-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
+              {/* Anonymous reporting CTA – civic style */}
+              <div className="rounded-lg border border-emerald-200 bg-emerald-50/90 p-4">
+                <div className="flex items-start gap-3">
+                  <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-emerald-200/70">
+                    <svg
+                      className="h-4 w-4 text-emerald-800"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={1.8}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M16.5 12a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zm0 0c0 1.657 1.007 3 2.25 3S21 13.657 21 12a9 9 0 10-2.636 6.364M16.5 12V8.25"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <h5 className="text-xs font-bold text-slate-900">Anonymous reporting</h5>
+                    <p className="mt-1 text-[9px] text-slate-700">
+                      No name, no email, no IP logging. Your identity is never recorded.
+                    </p>
+                    <button className="mt-2 rounded-md bg-white px-3 py-1.5 text-[9px] font-medium text-emerald-800 shadow-sm hover:bg-emerald-50">
+                      Submit anonymously →
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Attribution */}
-        <div className="mt-12 text-center text-[10px] text-slate-500">
-          <p>Open reporting since 2024 • 100% of issues receive tracking ID • Retaliation‑free policy</p>
+        {/* === TRANSPARENCY COMMITMENT === */}
+        <div className="mt-10 rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+          <div className="grid gap-6 md:grid-cols-2">
+            <div className="flex items-start gap-3">
+              <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-emerald-100">
+                <svg
+                  className="h-4 w-4 text-emerald-800"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={1.8}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z"
+                  />
+                </svg>
+              </div>
+              <div>
+                <h4 className="text-xs font-bold text-slate-900">Public Transparency Board</h4>
+                <p className="mt-1 text-[10px] text-slate-700">
+                  All issues and resolutions are published quarterly in open data format. 
+                  Community members may request full audit logs.
+                </p>
+                <button className="mt-2 text-[10px] font-medium text-emerald-800 hover:text-emerald-900">
+                  View public dashboard →
+                </button>
+              </div>
+            </div>
+            <div className="flex items-start gap-3">
+              <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-emerald-100">
+                <svg
+                  className="h-4 w-4 text-emerald-800"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={1.8}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </div>
+              <div>
+                <h4 className="text-xs font-bold text-slate-900">Service Level Agreements</h4>
+                <p className="mt-1 text-[10px] text-slate-700">
+                  Critical: 4h • High: 24h • Medium: 3d • Low: 7d. Compliance tracked and published monthly.
+                </p>
+                <button className="mt-2 text-[10px] font-medium text-emerald-800 hover:text-emerald-900">
+                  View SLA performance →
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* === CIVIC FOOTER === */}
+        <div className="mt-10 border-t border-slate-200 pt-6 text-center">
+          <div className="flex flex-wrap items-center justify-center gap-4 text-[9px] text-slate-500">
+            <span>Open reporting since 2024</span>
+            <span className="h-3 w-px bg-slate-200"></span>
+            <span>100% of issues receive tracking ID</span>
+            <span className="h-3 w-px bg-slate-200"></span>
+            <span>Retaliation‑free policy</span>
+            <span className="h-3 w-px bg-slate-200"></span>
+            <span>System status: Operational</span>
+          </div>
+          <p className="mt-4 text-[8px] text-slate-400">
+            Zentra Civic Resolution System v2.6 • Public beta • All reports are public records unless marked confidential
+          </p>
         </div>
       </div>
     </section>
   );
 };
 
-export default IssueSubmission;
+export default CivicIssuePlatform;
