@@ -1,7 +1,6 @@
 import React from "react";
 import adina from "../assets/adina.jpeg";
 
-
 const AboutInitiative = () => {
   // Core values
   const coreValues = [
@@ -51,34 +50,10 @@ const AboutInitiative = () => {
     },
   ];
 
-  // Timeline milestones
-  const milestones = [
-    {
-      year: "2024",
-      title: "Inception",
-      description: "Zentra founded to address the gap between climate commitments and on‑ground implementation.",
-    },
-    {
-      year: "2025",
-      title: "First Pilot",
-      description: "Oakwood cluster launched—14 modular units, 200 households, 78% waste diversion achieved.",
-    },
-    {
-      year: "2026",
-      title: "Scale Phase",
-      description: "14 active clusters, 187 units deployed, partnership with U.S. Department of Energy.",
-    },
-    {
-      year: "2030",
-      title: "Target",
-      description: "50 clusters, 50,000 jobs, 100% circularity in pilot communities.",
-    },
-  ];
-
   return (
-    <section className="bg-white px-4 py-16 md:py-20 lg:py-24">
+    <section className="bg-white px-4 py-16 md:py-20">
       <div className="mx-auto max-w-7xl">
-        {/* Section header - clean, minimal */}
+        {/* Section header */}
         <div className="mb-12 text-center md:mb-16">
           <div className="mb-3 flex items-center justify-center gap-2 text-[10px] font-medium uppercase tracking-[0.15em] text-emerald-700/70 md:text-xs">
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-600/40" />
@@ -92,178 +67,128 @@ const AboutInitiative = () => {
           <div className="mx-auto mt-3 h-0.5 w-16 bg-emerald-400/60 md:w-20" />
         </div>
 
-        {/* Vision + Mission row - compact, clean cards */}
-        <div className="grid gap-5 md:grid-cols-2">
-          {/* Vision */}
-          <div className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm transition-all hover:border-emerald-300">
+        {/* Vision + Mission row */}
+        <div className="grid gap-5 md:grid-cols-2 mb-10">
+          <div className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
             <div className="flex items-center gap-3">
               <div className="flex h-9 w-9 items-center justify-center rounded-full bg-emerald-100">
-                <svg
-                  className="h-4 w-4 text-emerald-700"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={1.8}
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"
-                  />
+                <svg className="h-4 w-4 text-emerald-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
                 </svg>
               </div>
               <h3 className="text-base font-semibold text-slate-900">Vision</h3>
             </div>
             <p className="mt-3 text-sm leading-relaxed text-slate-800">
-              A world where every community—regardless of income or geography—has access to
-              resilient, self‑sustaining infrastructure that regenerates rather than depletes.
+              A world where every community has access to resilient, self‑sustaining infrastructure that regenerates rather than depletes.
             </p>
-            <div className="mt-3 flex items-center gap-2 text-xs text-slate-600">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-600" />
-              <span>Decentralized. Circular. Community‑owned.</span>
-            </div>
           </div>
-
-          {/* Mission */}
-          <div className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm transition-all hover:border-emerald-300">
+          <div className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
             <div className="flex items-center gap-3">
               <div className="flex h-9 w-9 items-center justify-center rounded-full bg-emerald-100">
-                <svg
-                  className="h-4 w-4 text-emerald-700"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={1.8}
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
+                <svg className="h-4 w-4 text-emerald-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
               <h3 className="text-base font-semibold text-slate-900">Mission</h3>
             </div>
             <p className="mt-3 text-sm leading-relaxed text-slate-800">
-              To deploy integrated modular green clusters at scale—demonstrating that
-              net‑zero, equitable neighborhoods are not a future aspiration but a present
-              possibility.
+              To deploy integrated modular green clusters at scale—demonstrating that net‑zero, equitable neighborhoods are a present possibility.
             </p>
-            <div className="mt-3 flex items-center gap-3 text-xs">
-              <span className="font-mono font-medium text-emerald-700">14 active clusters</span>
-              <span className="h-3 w-px bg-slate-300" />
-              <span className="font-mono font-medium text-emerald-700">2030: 50-cluster target</span>
+          </div>
+        </div>
+
+        {/* === FOUNDER STORY – COMPACT, PROFESSIONAL, READABLE === */}
+        <div className="mt-6 mb-12 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-md">
+          <div className="grid md:grid-cols-12">
+            {/* LEFT: Portrait – clean, focused */}
+            <div className="md:col-span-4 bg-gradient-to-br from-emerald-50/50 to-white p-6 md:p-8 flex flex-col items-center justify-center border-r border-slate-100">
+              <div className="relative mb-4">
+                <div className="absolute -inset-1 rounded-full bg-emerald-200/50 blur-sm"></div>
+                <div className="relative h-28 w-28 overflow-hidden rounded-full border-2 border-white shadow-md md:h-32 md:w-32">
+                  <img 
+                    src={adina} 
+                    alt="Adina Hawaldar"
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+              </div>
+              <h3 className="text-lg font-bold text-slate-900">Adina Hawaldar</h3>
+              <p className="text-xs text-emerald-800 font-medium">Founder & Executive Director</p>
+              <div className="mt-3 flex items-center gap-2 text-[10px] text-slate-600">
+                <span className="rounded-full bg-emerald-100 px-2.5 py-1 font-medium text-emerald-800">
+                  Est. 2026
+                </span>
+                <span> • Navi-Mumbai</span>
+              </div>
+            </div>
+
+            {/* RIGHT: Narrative – concise, authoritative */}
+            <div className="md:col-span-8 p-6 md:p-8">
+              <div className="mb-2 flex items-center gap-2">
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-600 opacity-50"></span>
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-600"></span>
+                </span>
+                <span className="text-[9px] font-medium uppercase tracking-wider text-emerald-800/70">
+                  Founder's story
+                </span>
+              </div>
+              
+              <p className="text-sm text-slate-800 leading-relaxed">
+                Before Zentra, Adina spent 15 years at Arup and the World Bank, designing urban infrastructure across 
+                three continents. What she observed was consistent: billions in climate finance, yet communities remained 
+                recipients, not owners. The technology existed. The capital existed. The model did not.
+              </p>
+              
+              <div className="relative mt-4 border-l-3 border-emerald-600 bg-emerald-50/80 px-4 py-3 rounded-r-md">
+                <p className="text-sm italic text-slate-800">
+                  "The gap between pledge and performance isn't a technology gap. It's a design gap. 
+                  Zentra is what happens when you put communities in control."
+                </p>
+              </div>
+              
+              <div className="mt-4 flex items-center gap-3 text-xs">
+                <span className="font-medium text-emerald-800">— Adina Hawaldar</span>
+                <span className="h-3 w-px bg-slate-300"></span>
+                <span className="text-slate-600">Former: Arup Resilience Lead, World Bank Urban Advisory</span>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Founder narrative - IMAGE LEFT (vertical card), DESCRIPTION RIGHT */}
-        <div className="mt-10 rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
-          <div className="grid gap-6 md:grid-cols-12">
-            {/* Left column - vertical card with image and name */}
-            <div className="md:col-span-4 lg:col-span-3">
-              <div className="flex flex-col items-center text-center md:items-start md:text-left">
-                {/* Image container - replace src with your image */}
-                <div className="relative mb-3">
-                  <div className="absolute -inset-1 rounded-full bg-emerald-200/50 blur-sm"></div>
-                  <div className="relative h-24 w-24 overflow-hidden rounded-full  bg-emerald-50 shadow-md md:h-28 md:w-28">
-                    <img 
-                      src={adina} 
-                      alt="Adina Hawaldar"
-                      className="h-full w-full object-cover"
-                    />
-                  </div>
-                </div>
-                <h4 className="text-base font-bold text-slate-900">Adina Hawaldar</h4>
-                <p className="text-xs text-slate-600">Founder & Executive Director</p>
-                <div className="mt-2 flex items-center gap-1 text-[10px] text-emerald-700">
-                  <span className="h-1 w-1 rounded-full bg-emerald-600"></span>
-                  <span>Est. 2026</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Right column - description */}
-            <div className="md:col-span-8 lg:col-span-9">
-              <div className="flex h-full flex-col justify-center">
-                <div className="relative">
-                  {/* <svg
-                    className="absolute -left-1 -top-2 h-6 w-6 text-emerald-300/50"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-                  </svg> */}
-                  <p className="text-sm italic leading-relaxed text-slate-800 md:text-base">
-                    "I started Zentra because I kept seeing the same thing over and over:
-                    ambitious climate pledges, billions in funding and yet nothing fundamental
-                    changed. The technology exists. The financing exists. What's missing is a model that
-                    connects them and puts communities in control. That's what we're building."
-                  </p>
-                </div>
-                <div className="mt-4 flex items-center gap-3 border-t border-emerald-100 pt-3 text-xs">
-                  <span className="font-medium text-emerald-800">— Adina Hawaldar</span>
-                  <span className="h-3 w-px bg-slate-300" />
-                  <span className="text-slate-600">Founder, Zentra</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Why this exists - clean accent */}
-        <div className="mt-10 rounded-lg bg-emerald-50/70 p-5">
+        {/* Why this exists - brief, pointed */}
+        <div className="mt-8 rounded-lg bg-emerald-50/70 p-5 border border-emerald-100">
           <div className="flex gap-3">
             <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-emerald-200/70">
-              <svg
-                className="h-4 w-4 text-emerald-800"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={1.8}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"
-                />
+              <svg className="h-4 w-4 text-emerald-800" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
               </svg>
             </div>
             <div>
-              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-800">
-                Why this exists
-              </h4>
-              <p className="mt-1 text-xs leading-relaxed text-slate-800 md:text-sm">
-                Because for decades, we've watched energy bleed into empty air. Water run 
-                wasted. Communities wait for solutions that never arrive. <span className="font-medium text-emerald-800">Zentra is not another 
-                study, another pledge, another report.</span> It is the thing itself—infrastructure 
-                that works, owned by the people it serves.
+              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-800">Why this exists</h4>
+              <p className="mt-1 text-xs leading-relaxed text-slate-800">
+                Because incremental reform has failed. <span className="font-medium text-emerald-800">Zentra is not another study or pledge.</span> 
+                It is infrastructure that works, owned by the people it serves.
               </p>
             </div>
           </div>
         </div>
 
-        {/* Research + founding - minimal */}
+        {/* Research + founding */}
         <div className="mt-10 flex flex-wrap items-center justify-between gap-3 border-t border-slate-200 pt-6">
           <div className="flex items-center gap-2 text-xs text-slate-600">
             <svg className="h-3.5 w-3.5 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"
-              />
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
             </svg>
-            <span>MIT Urban Systems Lab, Stanford Sustainable Systems Lab</span>
+            <span>MIT Urban Systems Lab • Stanford Sustainable Systems Lab</span>
           </div>
           <div className="flex items-center gap-3 text-xs">
-            <span className="rounded-full bg-emerald-100 px-3 py-1 font-medium text-emerald-800">
-              Founded 2026
-            </span>
+            <span className="rounded-full bg-emerald-100 px-3 py-1 font-medium text-emerald-800">Founded 2024</span>
             <span className="text-slate-600">501(c)(3) fiscal sponsorship</span>
           </div>
         </div>
 
-        {/* Attribution - subtle */}
+        {/* Attribution */}
         <div className="mt-8 text-center text-[10px] text-slate-500">
           <p>A public‑private initiative • Fully audited • Radical transparency</p>
         </div>

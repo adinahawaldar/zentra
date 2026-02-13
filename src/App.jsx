@@ -8,6 +8,8 @@ import AboutInitiative from './Components/AboutInitiative'
 import IssueSubmission from './Components/IssueSubmission'
 import Footer from './Components/Footer'
 import Navbar from './Components/Navbar'
+import ImpactSection from './Components/ImpactSection'
+import ExpansionScalability from './Components/ExpansionScalability'
 
 const App = () => {
   return (
@@ -17,8 +19,10 @@ const App = () => {
       <RecentNews/>
       <IssueSubmission/>
       <Solution/>
-      <TechnologyFramework/>
+      <ImpactSection/>
+      {/* <TechnologyFramework/> */}
       <CommunityEngagement/>
+      <ExpansionScalability/>
       <AboutInitiative/>
       <Footer/>
     </>
