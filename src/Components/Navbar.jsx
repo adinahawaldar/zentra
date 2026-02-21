@@ -18,9 +18,13 @@ const Navbar = () => {
   };
 
   return (
+
     <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white/95 backdrop-blur-sm">
+
+      
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between md:h-20">
+          
           {/* Logo / Brand */}
           <div className="flex items-center gap-2">
             {/* <div className="flex h-8 w-8 items-center justify-center rounded-md bg-emerald-100 md:h-9 md:w-9"> */}

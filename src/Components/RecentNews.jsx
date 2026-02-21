@@ -99,7 +99,7 @@ const WhyThisMatters = () => {
             The crisis on paper.
             <span className="block font-semibold text-emerald-900">The crisis on the ground.</span>
           </h2>
-          <div className="mx-auto mt-3 h-0.5 w-16 bg-emerald-400/60 md:w-20" />
+          {/* <div className="mx-auto mt-3 h-0.5 w-16 bg-emerald-400/60 md:w-20" /> */}
           <p className="mx-auto mt-5 max-w-2xl text-sm text-slate-700 md:text-base">
             India's environmental emergencies are not distant threats—they are documented, measured, and unfolding now. 
             Each story below carries a direct, citable source from 2026.
@@ -191,40 +191,7 @@ const WhyThisMatters = () => {
           ))}
         </div>
 
-        {/* Synthesis – the bridge to Zentra's mission */}
-        <div className="mt-10 rounded-lg border-l-4 border-emerald-700 bg-slate-50 p-5">
-          <div className="flex gap-3">
-            <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-emerald-200/70">
-              <svg
-                className="h-4 w-4 text-emerald-800"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={1.8}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"
-                />
-              </svg>
-            </div>
-            <div>
-              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-800">
-                Five crises. One diagnosis.
-              </h4>
-              <p className="mt-1 text-xs leading-relaxed text-slate-800 md:text-sm">
-                Chronic underfunding of adaptation. Open waste burning as a heating solution. 
-                Communities inside protected parks without drinking water. Athletes unable to train 
-                in the capital. Billions directed toward technologies that extend fossil fuel dependence.
-                <span className="mt-2 block font-medium text-emerald-800">
-                  These are not separate failures. They are the same failure, repeated—and the reason 
-                  Zentra's Green Cluster Model exists.
-                </span>
-              </p>
-            </div>
-          </div>
-        </div>
+       
 
         {/* Methodological note – authority, transparency */}
         <div className="mt-8 text-center text-[8px] uppercase tracking-wider text-slate-400 md:text-[9px]">

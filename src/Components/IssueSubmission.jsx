@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 const CivicIssuePlatform = () => {
-  // Mock data for active issues – structured like a real 311-style system
   const [activeIssues] = useState([
     {
       id: "ZTR-4012",
@@ -90,7 +89,6 @@ const CivicIssuePlatform = () => {
     },
   ]);
 
-  // Categories for issue reporting – civic taxonomy
   const categories = [
     "Infrastructure",
     "Energy Systems",
@@ -103,7 +101,6 @@ const CivicIssuePlatform = () => {
     "Other",
   ];
 
-  // Clusters / Wards – like municipal divisions
   const clusters = [
     "Oakwood",
     "Riverside",
@@ -116,7 +113,6 @@ const CivicIssuePlatform = () => {
     "Other",
   ];
 
-  // Priority levels – aligned with civic SLA tiers
   const priorities = [
     { value: "low", label: "Low", color: "bg-blue-100 text-blue-800", sla: "7 days" },
     { value: "medium", label: "Medium", color: "bg-amber-100 text-amber-800", sla: "3 days" },
@@ -124,7 +120,6 @@ const CivicIssuePlatform = () => {
     { value: "critical", label: "Critical", color: "bg-red-600 text-white", sla: "4 hours" },
   ];
 
-  // Status badges – public-facing language
   const getStatusBadge = (status) => {
     switch (status) {
       case "pending":
@@ -155,7 +150,7 @@ const CivicIssuePlatform = () => {
     }
   };
 
-  // Civic stats – like a public dashboard
+  // Civic stats 
   const civicStats = [
     {
       label: "Open issues",
@@ -194,21 +189,7 @@ const CivicIssuePlatform = () => {
         <div className="mb-10 flex flex-col items-start justify-between gap-4 border-b border-slate-200 pb-6 md:flex-row md:items-center">
           <div>
             <div className="mb-2 flex items-center gap-2.5">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-800">
-                <svg
-                  className="h-5 w-5 text-white"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={1.8}
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"
-                  />
-                </svg>
-              </div>
+              
               <h1 className="font-serif text-xl font-medium text-slate-900 md:text-2xl">
                 Zentra Civic Resolution System
               </h1>
